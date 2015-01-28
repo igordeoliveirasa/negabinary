@@ -5,51 +5,43 @@
  */
 package codility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author igor
  */
 public class Codility {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("Ola Mundo!");
-    }
     
-    public int sumArrayValues(int[]array, int fromIndex, int toIndex) {
+    public int fromBinaryToInt(int B[], double radix) {
         int ret = 0;
-        for (int i=fromIndex; i<=toIndex; i++) {
-            ret += array[i];
+        for (int i=0; i<B.length; i++) {
+            double pow = Math.pow(radix, i*1.0);
+            int j = (int) (B[i]*pow);
+            ret += j;
         }
         return ret;
     }
     
-    public boolean isIndexAnEquilibrium(int[] array, int index) {
-        boolean ret = false;
-        if (array.length>=3) {
-            int sumLeft = sumArrayValues(array, 0, index-1); 
-            int sumRight = sumArrayValues(array, index+1, array.length-1);
-            ret = (sumLeft == sumRight);
+    public int[] fromIntToBinary(int value, double radix) {
+        List<Integer> list = new ArrayList<>();
+        while(value!=0) {
+            int div = (int) Math.ceil(value / radix);
+            int remainder = value % (int)radix;
+            value = div;
+            list.add(Math.abs(remainder));
+        }
+        int[] ret = new int[list.size()];
+        for (int i=0; i<list.size(); i++) {
+            ret[i] = list.get(i);
         }
         return ret;
     }
-    
-    public int solution(int[] A) {
-        int ret = -1;
-        
-        if (A.length>=3) {
-            for (int i=1; i<A.length-1; i++) {
-                if (isIndexAnEquilibrium(A, i)) {
-                    ret = i;
-                    break;
-                }
-            }
-        }
-        
-        return ret;
+   
+    public int[] solution(int[] A) {
+        double radix = -2.0;
+        int value = fromBinaryToInt(A, radix);
+        return fromIntToBinary(-value, radix);
     }
-    
 }

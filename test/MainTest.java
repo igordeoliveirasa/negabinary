@@ -16,33 +16,11 @@ public class MainTest {
 
     public MainTest() {
     }
-
-    @Before
-    public void setUp() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
+   
     @Test
     public void hello() {
-        Codility toptal = new Codility();
-        int[] array = new int[]{-1, 3, -4, 5, 1, -6, 2, 1};
-        assertTrue(toptal.isIndexAnEquilibrium(array, 1));
-        assertTrue(toptal.isIndexAnEquilibrium(array, 3));
-        assertTrue(toptal.isIndexAnEquilibrium(array, 7));
-
-        assertTrue(!toptal.isIndexAnEquilibrium(array, 2));
-        assertTrue(!toptal.isIndexAnEquilibrium(array, 4));
-        assertTrue(!toptal.isIndexAnEquilibrium(array, 5));
-        assertTrue(!toptal.isIndexAnEquilibrium(array, 6));
-        assertTrue(!toptal.isIndexAnEquilibrium(array, 8));
-        
-        
-        assertEquals(toptal.sumArrayValues(array, 0, array.length - 1), 1);
-
-        int ret = toptal.solution(array);
-        assertEquals(ret, 1);
-        
-    }
+        Codility codility = new Codility();
+        assertArrayEquals(codility.solution(new int[] {1,0,0,1,1}), new int[]{1,1,0,1});
+        assertArrayEquals(codility.solution(new int[] {1,0,0,1,1,1}), new int[]{1,1,0,1,0,1,1});
+    }       
 }
